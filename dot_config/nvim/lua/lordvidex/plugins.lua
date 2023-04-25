@@ -29,7 +29,8 @@ require('packer').startup(function(use)
   use 'folke/trouble.nvim'
   use 'nvim-lua/popup.nvim'
   use 'mbbill/undotree'
-  use 'stevearc/aerial.nvim' -- Lspsaga outline is complementary as well
+  use 'stevearc/aerial.nvim'   -- Lspsaga outline is complementary as well
+  -- use 'RRethy/vim-illuminate'     -- highlight instances of the word under the cursor (not needed)
   use {
     'glepnir/dashboard-nvim',
     config = require('lordvidex.dashboard').setup,
@@ -51,9 +52,9 @@ require('packer').startup(function(use)
   use 'vimwiki/vimwiki'
   use 'folke/which-key.nvim'
   use {
-    "nvim-tree/nvim-tree.lua",       -- https://github.com/nvim-tree/nvim-tree.lua
+    "nvim-tree/nvim-tree.lua",             -- https://github.com/nvim-tree/nvim-tree.lua
     requires = {
-      "nvim-tree/nvim-web-devicons", -- https://github.com/nvim-tree/nvim-web-devicons
+      "nvim-tree/nvim-web-devicons",       -- https://github.com/nvim-tree/nvim-web-devicons
     },
   }
   use 'windwp/nvim-autopairs'
@@ -84,12 +85,12 @@ require('packer').startup(function(use)
   use 'ahmedkhalf/project.nvim'
 
   -- LSP
-  use 'neovim/nvim-lspconfig' -- enable LSP
+  use 'neovim/nvim-lspconfig'   -- enable LSP
   use 'glepnir/lspsaga.nvim'
   use 'ray-x/lsp_signature.nvim'
   use {
     "williamboman/mason.nvim",
-    run = ":MasonUpdate" -- :MasonUpdate updates registry contents
+    run = ":MasonUpdate"     -- :MasonUpdate updates registry contents
   }
   use 'williamboman/mason-lspconfig.nvim'
   use 'jay-babu/mason-null-ls.nvim'
@@ -101,7 +102,7 @@ require('packer').startup(function(use)
   -- Telescope
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-fzf-native.nvim'
-  use 'christoomey/vim-tmux-navigator' -- tmux navigation made easy
+  use 'christoomey/vim-tmux-navigator'   -- tmux navigation made easy
 
   -- Treesitter
   use {
@@ -113,7 +114,7 @@ require('packer').startup(function(use)
     after = "nvim-treesitter",
     requires = "nvim-treesitter/nvim-treesitter",
   })
-  use 'nvim-treesitter/nvim-treesitter-refactor' -- this provides gotodef when lsp is buggy
+  use 'nvim-treesitter/nvim-treesitter-refactor'   -- this provides gotodef when lsp is buggy
 
   -- Lua
   use 'folke/neodev.nvim'
@@ -124,8 +125,9 @@ require('packer').startup(function(use)
 
   -- Go
   use 'ray-x/go.nvim'
+  -- use 'fatih/vim-go'
   use { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' }
-  use 'leoluz/nvim-dap-go' -- TODO: add keymap and setup for go
+  use 'leoluz/nvim-dap-go'   -- TODO: add keymap and setup for go
 
 
   -- Git
