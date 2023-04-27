@@ -76,21 +76,21 @@ configs.setup({
       enable = enable,
       set_jumps = true, -- whether to set jump in the jumplist
       goto_next_start = {
-        ["]]"] = { query = "@class.outer", desc = "next start of class" },
-        ["]m"] = "@function.outer",
-        ["]o"] = { query = "@loop.*", desc = "next loop" },
+        ["]c"] = { query = "@class.outer", desc = "next start of class" },
+        ["]]"] ={query=  "@function.outer", desc = "next start of function" },
+        ["]l"] = { query = "@loop.*", desc = "next loop" },
       },
       goto_next_end = {
-        ["]M"] = { query = "@function.outer", desc = "next end of function" },
-        ["]["] = "@class.outer",
+        ["]["] = { query = "@function.outer", desc = "next end of function" },
+        ["]C"] = "@class.outer",
       },
       goto_previous_start = {
-        ["[m"] = "@function.outer",
-        ["[["] = "@class.outer",
+        ["[["] = "@function.outer",
+        ["[c"] = "@class.outer",
       },
       goto_previous_end = {
-        ["[M"] = '@function.outer',
-        ["[]"] = "@class.outer",
+        ["[]"] = '@function.outer',
+        ["[C"] = "@class.outer",
       },
     }
   },
@@ -109,24 +109,3 @@ configs.setup({
     enable_autocmd = false,
   }
 })
-
-local ok, ts_repeat_move = pcall(require, "nvim-treesitter.textobjects.repeatable_move")
-if not ok then
-  -- print warning
-  print("Treesitter textobjects repeatable move not found")
-  return
-end
--- Repeat movement with ; and ,
--- ensure ; goes forward and , goes backward regardless of the last direction
-vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
-vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
-
--- vim way: ; goes to the direction you were moving.
--- vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
--- vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
-
--- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
-vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
-vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
-vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
