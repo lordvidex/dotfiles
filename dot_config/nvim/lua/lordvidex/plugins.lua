@@ -68,7 +68,7 @@ require('packer').startup(function(use)
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
   use 'saadparwaiz1/cmp_luasnip'
-  use 'tzachar/cmp-tabnine'
+  use{  'tzachar/cmp-tabnine', run = './install.sh' }
   use 'github/copilot.vim'
   use 'lukas-reineke/indent-blankline.nvim'
 
@@ -101,7 +101,7 @@ require('packer').startup(function(use)
 
   -- Telescope
   use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-fzf-native.nvim'
+  use{  'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use 'christoomey/vim-tmux-navigator'   -- tmux navigation made easy
 
   -- Treesitter
