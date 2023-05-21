@@ -32,7 +32,7 @@ local setup = {
       -- f = { "<cmd>"}ffect WK in any other way.
       -- For example:
       -- ["<space>"] = "SPC",
-      -- ["<cr>"] = "RET",
+      -- ["<CR>"] = "RET",
       -- ["<tab>"] = "TAB",
     },
     icons = {
@@ -84,7 +84,7 @@ local setup = {
   }
 }
 
-opts = {
+local global_opts = {
   mode = "n",     -- NORMAL mode
   prefix = "<leader>",
   buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
@@ -93,80 +93,94 @@ opts = {
   nowait = true,  -- use `nowait` when creating keymaps
 }
 
-local mappings = {
-  ["a"] = { "<cmd>AerialToggle!<cr>", "Aerial Toggle" },
+local global_mappings = {
+  ["a"] = { "<cmd>AerialToggle!<CR>", "Aerial Toggle" },
   ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
   ["c"] = { "<cmd>Bdelete<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   ["u"] = { "<cmd>UndotreeToggle<CR>", "UndoTree" },
   p = {
     name = "Packer",
-    c = { "<cmd>PackerCompile<cr>", "Compile" },
-    i = { "<cmd>PackerInstall<cr>", "Install" },
-    s = { "<cmd>PackerSync<cr>", "Sync" },
-    S = { "<cmd>PackerStatus<cr>", "Status" },
-    u = { "<cmd>PackerUpdate<cr>", "Update" },
+    c = { "<cmd>PackerCompile<CR>", "Compile" },
+    i = { "<cmd>PackerInstall<CR>", "Install" },
+    s = { "<cmd>PackerSync<CR>", "Sync" },
+    S = { "<cmd>PackerStatus<CR>", "Status" },
+    u = { "<cmd>PackerUpdate<CR>", "Update" },
   },
   f = {
     name = "Telescope [Find]",
-    f = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Find files" },
-    g = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "Find Text [g]rep search" },
-    b = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "Find in [b]uffers" },
-    h = { "<cmd>lua require('telescope.builtin').help_tags()<cr>", "Find in [h]elp" },
-    x = { "<cmd>lua require('telescope.builtin').treesitter()<cr>", "Treesitter" },
-    p = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-    ["/"] = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", "Find in current buffer" },
-    m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-    R = { "<cmd>Telescope registers<cr>", "Registers" },
-    k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-    c = { "<cmd>Telescope commands<cr>", "Commands" },
+    f = { "<cmd>lua require('telescope.builtin').find_files()<CR>", "Find files" },
+    g = { "<cmd>lua require('telescope.builtin').live_grep()<CR>", "Find Text [g]rep search" },
+    b = { "<cmd>lua require('telescope.builtin').buffers()<CR>", "Find in [b]uffers" },
+    h = { "<cmd>lua require('telescope.builtin').help_tags()<CR>", "Find in [h]elp" },
+    x = { "<cmd>lua require('telescope.builtin').treesitter()<CR>", "Treesitter" },
+    p = { "<cmd>lua require('telescope').extensions.projects.projects()<CR>", "Projects" },
+    ["/"] = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", "Find in current buffer" },
+    m = { "<cmd>Telescope man_pages<CR>", "Man Pages" },
+    r = { "<cmd>Telescope oldfiles<CR>", "Open Recent File" },
+    R = { "<cmd>Telescope registers<CR>", "Registers" },
+    k = { "<cmd>Telescope keymaps<CR>", "Keymaps" },
+    c = { "<cmd>Telescope commands<CR>", "Commands" },
   },
   g = {
     name = "Git",
-    j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
-    k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-    l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-    p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-    r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-    R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-    s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+    l = { "<cmd>lua require 'gitsigns'.blame_line()<CR>", "Blame" },
+    p = { "<cmd>lua require 'gitsigns'.preview_hunk()<CR>", "Preview Hunk" },
+    r = { "<cmd>lua require 'gitsigns'.reset_hunk()<CR>", "Reset Hunk" },
+    R = { "<cmd>lua require 'gitsigns'.reset_buffer()<CR>", "Reset Buffer" },
+    s = { "<cmd>lua require 'gitsigns'.stage_hunk()<CR>", "Stage Hunk" },
     u = {
-      "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
+      "<cmd>lua require 'gitsigns'.undo_stage_hunk()<CR>",
       "Undo Stage Hunk",
     },
-    o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-    c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-    d = {
-      "<cmd>DiffviewOpen<cr>",
-      "Diff",
-    },
+    o = { "<cmd>Telescope git_status<CR>", "Open changed file" },
+    b = { "<cmd>Telescope git_branches<CR>", "Checkout branch" },
+    c = { "<cmd>Telescope git_commits<CR>", "Checkout commit" },
+    d = { "<cmd>DiffviewOpen<CR>", "Diff" }
   },
   l = {
     name = "LSP",
     d = {
-      "<cmd>Telescope diagnostics bufnr=0<cr>",
+      "<cmd>Telescope diagnostics bufnr=0<CR>",
       "Document Diagnostics",
     },
-    i = {"<cmd>Lspsaga incoming_calls<CR>", "Incoming Calls"},
-    o = {"<cmd>Lspsaga outgoing_calls<CR>", "Outgoing Calls"},
-    O = {"<cmd>Lspsaga outline<CR>", "Lspsaga [O]utline"},
-    f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
-    l = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Show Line Diagnostics" },
-    b = { "<cmd>Lspsaga show_buf_diagnostics<cr>", "Show Buffer Diagnostics" },
-    w = { "<cmd>Lspsaga show_workspace_diagnostics<cr>", "Show Workspace Diagnostics" },
-    c = { "<cmd>Lspsaga show_cursor_diagnostics<cr>", "Show Cursor Diagnostics" },
-    L = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-    q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
-    r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+    i = { "<cmd>Lspsaga incoming_calls<CR>", "Incoming Calls" },
+    o = { "<cmd>Lspsaga outgoing_calls<CR>", "Outgoing Calls" },
+    O = { "<cmd>Lspsaga outline<CR>", "Lspsaga [O]utline" },
+    f = { "<cmd>lua vim.lsp.buf.format{async=true}<CR>", "Format" },
+    l = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show Line Diagnostics" },
+    b = { "<cmd>Lspsaga show_buf_diagnostics<CR>", "Show Buffer Diagnostics" },
+    w = { "<cmd>Lspsaga show_workspace_diagnostics<CR>", "Show Workspace Diagnostics" },
+    c = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show Cursor Diagnostics" },
+    L = { "<cmd>lua vim.lsp.codelens.run()<CR>", "CodeLens Action" },
+    q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Quickfix" },
+    r = { "<cmd>Lspsaga rename<CR>", "Rename" },
+    s = { "<cmd>Telescope lsp_document_symbols<CR>", "Document Symbols" },
     S = {
-      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+      "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>",
       "Workspace Symbols",
     },
   },
 }
 
+local local_opts = {
+  mode = "n",
+  prefix = "<localleader>",
+  silent = true,
+  noremap = true,
+  nowait = true,
+}
+
+local local_mappings = {
+  m = {
+    name = "Markdown",
+    m = { "<Plug>MarkdownPreviewToggle", "Toggle [M]arkdown Preview" },
+    a = { "<Plug>MarkdownPreview", "St[a]rt markdown Preview" },
+    s = { "<Plug>MarkdownPreviewStop", "[S]top Markdown Preview" },
+  }
+}
+
+
 which_key.setup(setup)
-which_key.register(mappings, opts)
+which_key.register(global_mappings, global_opts)
+which_key.register(local_mappings, local_opts)

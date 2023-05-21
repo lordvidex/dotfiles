@@ -9,3 +9,4 @@ require "lordvidex.lsp.saga"
 require "lordvidex.lsp.signature"
 require "lordvidex.lsp.flutter"
 require 'lordvidex.lsp.go'
+-- require 'lordvidex.lsp.rust'

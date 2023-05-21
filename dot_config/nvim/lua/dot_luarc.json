@@ -1,0 +1,49 @@
+{
+    "workspace.library": [
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/neodev.nvim/types/stable",
+        "/usr/local/Cellar/neovim/0.8.3/share/nvim/runtime/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/bufferline.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/cmp-buffer/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/cmp-cmdline/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/cmp-path/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/cmp_luasnip/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/Comment.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/gitsigns.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/lualine.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/LuaSnip/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/mason.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/neodev.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/null-ls.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/nvim-autopairs/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/nvim-cmp/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/nvim-dap/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/nvim-dap-ui/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/nvim-lspconfig/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/nvim-tree.lua/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/nvim-treesitter/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/nvim-web-devicons/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/packer.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/plenary.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/popup.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/telescope.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/toggleterm.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/tokyonight.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/trouble.nvim/lua",
+        "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/which-key.nvim/lua",
+        "/Users/lordvidex/.config/nvim/lua",
+        "${3rd}/luv/library"
+    ],
+    "workspace.checkThirdParty": false,
+    "diagnostics.globals": [
+        "opts"
+    ],
+    "diagnostics.disable": [
+        "param-type-mismatch"
+    ]
+}
