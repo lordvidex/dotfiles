@@ -1,4 +1,4 @@
-vim.g.vimwiki_global_ext = 0
+-- vim.g.vimwiki_global_ext = 0
 vim.g.vimwiki_list = {
   {
     path = '$HOME/Documents/vimwiki',
@@ -11,6 +11,7 @@ vim.g.vimwiki_list = {
   {
     path = '$HOME/Documents/vimwiki/paytrybe',
     syntax = 'markdown',
+    custom_wiki2html = '$HOME/scripts/wiki2html.sh',
     path_html = '$HOME/Documents/vimwiki_html/paytrybe',
     html_filename_parameterization = 1,
     ext = '.md',

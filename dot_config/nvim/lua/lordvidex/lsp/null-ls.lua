@@ -12,10 +12,10 @@ local sources = {
   formatting.prettierd,
   -- diagnostics.eslint_d, -- no need for this since we have eslint_lsp
 }
-null_ls.setup({sources = sources})
+null_ls.setup({ sources = sources })
 
 
--- install mason sources for linters I do  not have, 
+-- install mason sources for linters I do  not have,
 -- I still have to manually add them to sources anyways
 require('mason-null-ls').setup({
   ensure_installed = nil,

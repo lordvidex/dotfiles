@@ -69,7 +69,7 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
   keymap(bufnr, "n", "]g", "<cmd>lua require 'gitsigns'.next_hunk()<CR>", opts)
   keymap(bufnr, "n", "[g", "<cmd>lua require 'gitsigns'.prev_hunk()<CR>", opts)
-  
+
   vim.keymap.set("n", "[E", function()
     require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
   end)
@@ -83,7 +83,7 @@ local function lsp_keymaps(bufnr)
   -- you should use the wincmd command "<C-w>w"
   -- keymap("n", "K", "<cmd>Lspsaga hover_doc ++keep<CR>")
   vim.keymap.set({ "n", "v" }, "<leader>la", "<cmd>Lspsaga code_action<CR>",
-  { buffer = true, silent = true, noremap = true })
+    { buffer = true, silent = true, noremap = true })
   keymap(bufnr, "n", "<C-q>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   keymap(bufnr, "n", "gt", "<cmd>Lspsaga peek_type_definition<CR>", opts)
@@ -104,5 +104,5 @@ local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if status_ok then
   M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 end
-
+M.lsp_keymaps = lsp_keymaps
 return M

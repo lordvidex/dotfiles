@@ -59,7 +59,16 @@ local attach_go_keybindings = function()
 end
 
 -- go.nvim setup
-require('go').setup {
+local ok_go, go = pcall(require, 'go')
+if not ok_go then
+  return
+end
+
+local ok, conf_opts = pcall(require, "lordvidex.lsp.settings.gopls")
+if not ok then
+  conf_opts = {}
+end
+go.setup {
   -- NOTE: all LSP and formatting related options are disabeld.
   -- NOTE: is not related to core.plugins.lsp
   -- NOTE: manages LSP on its own
@@ -74,23 +83,19 @@ require('go').setup {
   comment_placeholder = "", -- comment_placeholder your cool placeholder e.g. ﳑ       
   -- icons = { breakpoint = icons.ui.Yoga, currentpos = icons.ui.RunningMan },
   verbose = false,          -- output loginf in messages
-  lsp_cfg = {
-    capabilities = require("lordvidex.lsp.handlers").capabilities,
-  }, -- true: use non-default gopls setup specified in go/lsp.lua
+  lsp_cfg = conf_opts,      -- true: use non-default gopls setup specified in go/lsp.lua
   -- false: do nothing
   -- if lsp_cfg is a table, merge table with with non-default gopls setup in go/lsp.lua, e.g.
   --   lsp_cfg = {settings={gopls={matcher='CaseInsensitive', ['local'] = 'your_local_module_path', gofumpt = true }}}
   lsp_gofumpt = false, -- true: set default gofmt in gopls format to gofumpt
   lsp_diag_underline = false,
-  lsp_on_attach = function(client, bufnr)
-    -- attach my LSP configs keybindings
-    require("lordvidex.lsp.handlers").on_attach(client, bufnr)
-    attach_go_keybindings()
-  end, -- nil: use on_attach function defined in go/lsp.lua,
   --      when lsp_cfg is true
   -- if lsp_on_attach is a function: use this function as on_attach function for gopls
-  lsp_codelens = false, -- set to false to disable codelens, true by default
-  lsp_keymaps = false,  -- set to false to disable gopls/lsp keymap
+  lsp_codelens = true, -- set to false to disable codelens, true by default
+  lsp_keymaps = function(bufnr)
+    require('lordvidex.lsp.handlers').lsp_keymaps(bufnr)
+    attach_go_keybindings()
+  end,
   lsp_diag_hdlr = true, -- hook lsp diag handler
   -- lsp_diag_virtual_text = { space = 0, prefix = icons.arrows.Diamond },     -- virtual text setup
   lsp_diag_signs = true,
@@ -130,6 +135,7 @@ require('go').setup {
   gopls_cmd = nil,          -- if you need to specify gopls path and cmd, e.g {"/home/user/lsp/gopls", "-logfile","/var/log/gopls.log" }
   gopls_remote_auto = true, -- add -remote=auto to gopls
   gocoverage_sign = "█",
+  sign_priority = 5,
   dap_debug = false,        -- set to false to disable dap
   dap_debug_keymap = false, -- true: use keymap for debugger defined in go/dap.lua
   -- false: do not use keymap in go/dap.lua.  you must define your own.
@@ -142,5 +148,4 @@ require('go').setup {
   -- float term recommended if you use richgo/ginkgo with terminal color
   luasnip = false,
 }
-
 -- TODO: remove lsp_keymaps and don't provide function

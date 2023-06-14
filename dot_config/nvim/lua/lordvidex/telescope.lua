@@ -6,7 +6,6 @@ end
 local actions = require "telescope.actions"
 telescope.setup {
   defaults = {
-
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
@@ -94,4 +93,13 @@ telescope.setup {
   },
 }
 
-pcall(telescope.load_extension, "fzf")
+telescope.load_extension("fzf")
+
+-- HACK: fixing the telescope prompt opening files in insert mode instead of normal mode
+-- vim.api.nvim_create_autocmd("WinLeave", {
+--   callback = function()
+--     if vim.bo.ft == "TelescopePrompt" and vim.fn.mode() == "i" then
+--       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false)
+--     end
+--   end,
+-- })

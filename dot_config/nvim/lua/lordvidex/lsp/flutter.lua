@@ -1,4 +1,8 @@
-require('flutter-tools').setup {
+local tools_ok, tools = pcall(require, 'flutter-tools')
+if not tools_ok then
+  return
+end
+tools.setup {
   lsp = {
     color = {
       enabled = true,
@@ -26,7 +30,7 @@ require('flutter-tools').setup {
     end
   },
   outline = {
-    auto_open = true,
+    auto_open = false,
   },
 }
 

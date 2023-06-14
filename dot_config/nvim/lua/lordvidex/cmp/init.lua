@@ -1,5 +1,6 @@
 require('lordvidex.cmp.tabnine') -- require tabnine
 require('lordvidex.cmp.copilot') -- require copilot
+-- require('lordvidex.cmp.codeium')
 
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
@@ -12,7 +13,7 @@ if not snip_status_ok then
 end
 
 require("luasnip/loaders/from_vscode").lazy_load()
-luasnip.filetype_extend('dart', {'flutter'}) -- add flutter snippets support
+luasnip.filetype_extend('dart', { 'flutter' }) -- add flutter snippets support
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1
@@ -65,6 +66,13 @@ cmp.setup {
     ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-S-f>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
+    ["<C-l>"] = function()
+      -- TODO: check for copilot completions
+      local copilot_keys = vim.fn['copilot#Accept']()
+      if copilot_keys ~= '' and type(copilot_keys) == 'string' then
+        vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+      end
+    end,
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete()),
     ["<C-y>"] = cmp.config.disable, -- specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping
     ["<C-e>"] = cmp.mapping {
@@ -75,15 +83,10 @@ cmp.setup {
     -- Set `select` to `false` to only confirm explicitly selected items.
     ["<CR>"] = cmp.mapping.confirm { select = true },
     ["<Tab>"] = cmp.mapping(function(fallback)
-      local copilot_keys = vim.fn['copilot#Accept']()
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expandable() then
+      if luasnip.expandable() then
         luasnip.expand()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
-      elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
-        vim.api.nvim_feedkeys(copilot_keys, 'i', true)
       elseif check_backspace() then
         fallback()
       else
@@ -91,9 +94,7 @@ cmp.setup {
       end
     end, { "i", "s" }),
     ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
+      if luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
         fallback()
@@ -111,7 +112,7 @@ cmp.setup {
         luasnip = "[Snip]",
         buffer = "[Buf]",
         path = "[Path]",
-        cmp_tabnine = "[TN]",
+        cmp_tabnine = '[TN]'
       })[entry.source.name]
       return vim_item
     end,
@@ -120,8 +121,8 @@ cmp.setup {
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "buffer" },
+    { name = 'cmp_tabnine' },
     { name = "nvim_lua",   keyword_length = 2 },
-    { name = "cmp_tabnine" },
     { name = "path" },
   },
   confirm_opts = {

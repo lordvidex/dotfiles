@@ -30,6 +30,18 @@ require('packer').startup(function(use)
   use 'nvim-lua/popup.nvim'
   use 'mbbill/undotree'
   use 'stevearc/aerial.nvim' -- Lspsaga outline is complementary as well
+  use {
+    'stevearc/stickybuf.nvim',
+    config = function() require('stickybuf').setup() end
+  }
+  use { 'ggandor/lightspeed.nvim',
+    requires = { 'tpope/vim-repeat' },
+  }
+  use 'mg979/vim-visual-multi' -- multi cursors
+  use {
+    'rest-nvim/rest.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+  }
   -- use 'RRethy/vim-illuminate'     -- highlight instances of the word under the cursor (not needed)
   use {
     'glepnir/dashboard-nvim',
@@ -68,7 +80,15 @@ require('packer').startup(function(use)
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
   use 'saadparwaiz1/cmp_luasnip'
-  use{  'tzachar/cmp-tabnine', run = './install.sh' }
+  -- autocompletion: codeium = tabnine + copilot (but codeium has issues, jeez, messing with <Esc> and insert mode)
+  -- use { 'Exafunction/codeium.vim', config = function()
+  --   vim.keymap.set('i', '<Tab>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+  --   vim.keymap.set('i', '<c-]>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+  --   vim.keymap.set('i', '<c-[>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+  --   vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+  -- end,
+  -- }
+  use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
   use 'github/copilot.vim'
   use 'lukas-reineke/indent-blankline.nvim'
 
@@ -77,7 +97,7 @@ require('packer').startup(function(use)
   use 'rcarriga/nvim-dap-ui'
   use 'theHamsta/nvim-dap-virtual-text'
   use 'nvim-telescope/telescope-dap.nvim'
-
+  --
   -- Snippet support
   use 'L3MON4D3/LuaSnip'
   use 'rafamadriz/friendly-snippets'
@@ -98,23 +118,24 @@ require('packer').startup(function(use)
   use 'numToStr/Comment.nvim'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
   use 'jose-elias-alvarez/null-ls.nvim'
-
+  --
   -- Telescope
-  use 'nvim-telescope/telescope.nvim'
-  use{  'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use 'christoomey/vim-tmux-navigator'   -- tmux navigation made easy
-
-  -- Treesitter
+  use { 'nvim-telescope/telescope.nvim', tag = '0.1.1' }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use 'christoomey/vim-tmux-navigator' -- tmux navigation made easy
+  --
+  -- -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate"
+    run = ":TSUpdate",
   }
   use({
     "nvim-treesitter/nvim-treesitter-textobjects",
     after = "nvim-treesitter",
     requires = "nvim-treesitter/nvim-treesitter",
   })
-  use 'nvim-treesitter/nvim-treesitter-refactor' -- this provides gotodef when lsp is buggy
+  use { 'nvim-treesitter/playground', requires = 'nvim-treesitter/nvim-treesitter' }
+  use { 'nvim-treesitter/nvim-treesitter-refactor', requires = 'nvim-treesitter/nvim-treesitter' } -- this provides gotodef when lsp is buggy
 
   -- Lua
   use 'folke/neodev.nvim'
