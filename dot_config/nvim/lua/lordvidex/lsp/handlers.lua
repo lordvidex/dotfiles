@@ -67,8 +67,6 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
   keymap(bufnr, "n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
   keymap(bufnr, "n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
-  keymap(bufnr, "n", "]g", "<cmd>lua require 'gitsigns'.next_hunk()<CR>", opts)
-  keymap(bufnr, "n", "[g", "<cmd>lua require 'gitsigns'.prev_hunk()<CR>", opts)
 
   vim.keymap.set("n", "[E", function()
     require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })

@@ -41,6 +41,7 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
+vim.g.editorconfig = false
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd "set autowriteall"         -- saves file when switching buffers for all files
 vim.cmd "set autowrite"            -- saves file when switching buffers

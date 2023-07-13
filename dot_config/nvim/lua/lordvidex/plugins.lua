@@ -30,10 +30,10 @@ require('packer').startup(function(use)
   use 'nvim-lua/popup.nvim'
   use 'mbbill/undotree'
   use 'stevearc/aerial.nvim' -- Lspsaga outline is complementary as well
-  use {
-    'stevearc/stickybuf.nvim',
-    config = function() require('stickybuf').setup() end
-  }
+  -- use {
+  --   'stevearc/stickybuf.nvim',
+  --   config = function() require('stickybuf').setup() end
+  -- }
   use { 'ggandor/lightspeed.nvim',
     requires = { 'tpope/vim-repeat' },
   }
@@ -52,7 +52,6 @@ require('packer').startup(function(use)
   -- Display
   -- Themes
   use 'folke/tokyonight.nvim'
-  use 'navarasu/onedark.nvim'
   use { 'catppuccin/nvim', as = "catppuccin" }
   -- Helpers
   use 'akinsho/bufferline.nvim'
@@ -148,7 +147,14 @@ require('packer').startup(function(use)
   use 'ray-x/go.nvim'
   -- use 'fatih/vim-go'
   use { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' }
-  use 'leoluz/nvim-dap-go' -- TODO: add keymap and setup for go
+  use { 'lordvidex/go-heat.nvim',
+    config = function()
+      require('go-heat').setup({
+        open_in = 'terminal',
+      })
+    end
+  }
+  -- use 'leoluz/nvim-dap-go' -- TODO: add keymap and setup for go
 
   -- Rust
   -- use 'simrat39/rust-tools.nvim' -- not needed LSP is enough
@@ -162,6 +168,9 @@ require('packer').startup(function(use)
   use 'lewis6991/gitsigns.nvim'
   use 'junegunn/gv.vim'
   use 'sindrets/diffview.nvim'
+
+  -- assembly
+  use 'p00f/godbolt.nvim'
 
   if packer_bootstrap then
     require('packer').sync()

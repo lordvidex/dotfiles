@@ -3,17 +3,22 @@ if not status_ok then
   return
 end
 
-vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
+vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile", "prompt", "quickfix" }
 vim.g.indent_blankline_filetype_exclude = {
   "help",
-  -- exclude dart files
-  'dart',
+  "man",
+  "lspinfo",
+  -- "toggleterm",
+  'dart', -- exclude dart files
   "startify",
+  "",
   "dashboard",
   "packer",
   "neogitstatus",
   "NvimTree",
+  "checkhealth",
   "Trouble",
+  -- "TelescopePrompt"
 }
 vim.g.indentLine_enabled = 1
 -- vim.g.indent_blankline_char = "│"
@@ -22,7 +27,6 @@ vim.g.indent_blankline_char = "▏"
 vim.g.indent_blankline_show_trailing_blankline_indent = false
 vim.g.indent_blankline_show_first_indent_level = true
 vim.g.indent_blankline_use_treesitter = true
-vim.g.indent_blankline_show_current_context = true
 vim.g.indent_blankline_context_patterns = {
   "class",
   "return",
@@ -45,8 +49,6 @@ vim.g.indent_blankline_context_patterns = {
   "import_statement",
   "operation_type",
 }
--- HACK: work-around for https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
-vim.wo.colorcolumn = "99999"
 
 -- vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
 -- vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
@@ -62,7 +64,7 @@ vim.wo.colorcolumn = "99999"
 indent_blankline.setup({
   -- show_end_of_line = true,
   -- space_char_blankline = " ",
-  show_current_context = true,
+  show_current_context = true, -- TODO: change to false if slow
   -- show_current_context_start = true,
   -- char_highlight_list = {
   --   "IndentBlanklineIndent1",

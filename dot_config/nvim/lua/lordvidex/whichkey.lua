@@ -121,6 +121,7 @@ local global_mappings = {
     R = { "<cmd>Telescope registers<CR>", "Registers" },
     k = { "<cmd>Telescope keymaps<CR>", "Keymaps" },
     c = { "<cmd>Telescope commands<CR>", "Commands" },
+    l = { "<cmd>Telescope resume<CR>", "Resume last picker" },
   },
   g = {
     name = "Git",

@@ -1,3 +1,8 @@
+LICENSE
 {{- if ne .chezmoi.os "linux" }}
 .bashrc
+.profile
+install.sh
+robotics_install.sh
 {{ end }}
+.luarc.json

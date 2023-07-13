@@ -36,6 +36,8 @@ local attach_go_keybindings = function()
       r = { "<cmd>GoRun<CR>", "Run" },
       t = {
         name = "Tests",
+        a = { "<cmd>GoAddTest<CR>", "Add test to func" },
+        A = { "<cmd>GoAddExpTest<CR>", "Add test to func with example" },
         r = { "<cmd>GoTest<CR>", "Run tests" },
         s = { "<cmd>GoAltS!<CR>", "Open alt file in split" },
         v = { "<cmd>GoAltV!<CR>", "Open alt file in vertical split" },
@@ -61,13 +63,19 @@ end
 -- go.nvim setup
 local ok_go, go = pcall(require, 'go')
 if not ok_go then
+  print('go not found')
   return
 end
 
 local ok, conf_opts = pcall(require, "lordvidex.lsp.settings.gopls")
 if not ok then
-  conf_opts = {}
+  conf_opts = false
+else
+  for _, v in ipairs(conf_opts) do
+    print(v)
+  end
 end
+
 go.setup {
   -- NOTE: all LSP and formatting related options are disabeld.
   -- NOTE: is not related to core.plugins.lsp
@@ -100,7 +108,7 @@ go.setup {
   -- lsp_diag_virtual_text = { space = 0, prefix = icons.arrows.Diamond },     -- virtual text setup
   lsp_diag_signs = true,
   lsp_diag_update_in_insert = true,
-  lsp_document_formatting = false,
+  lsp_document_formatting = true,
   -- set to true: use gopls to format
   -- false if you want to use other formatter tool(e.g. efm, nulls)
   lsp_inlay_hints = {
@@ -142,10 +150,10 @@ go.setup {
   dap_debug_gui = false,    -- set to true to enable dap gui, highly recommended
   dap_debug_vt = false,     -- set to true to enable dap virtual text
   build_tags = "",          -- set default build tags
-  textobjects = true,       -- enable default text jobects through treesittter-text-objects
+  textobjects = false,      -- enable default text jobects through treesittter-text-objects
   test_runner = "go",       -- richgo, go test, richgo, dlv, ginkgo
   run_in_floaterm = false,  -- set to true to run in float window.
   -- float term recommended if you use richgo/ginkgo with terminal color
   luasnip = false,
 }
--- TODO: remove lsp_keymaps and don't provide function
+-- -- TODO: remove lsp_keymaps and don't provide function

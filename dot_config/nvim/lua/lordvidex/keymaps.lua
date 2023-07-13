@@ -59,6 +59,10 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "∆", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "˚", ":move '<-2<CR>gv-gv", opts)
 
+-- Git jumps
+keymap("n", "[g", "<cmd>lua require 'gitsigns'.prev_hunk()<CR>", opts)
+keymap("n", "]g", "<cmd>lua require 'gitsigns'.next_hunk()<CR>", opts)
+
 -- Terminal
 -- Better terminal navigation
 -- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)

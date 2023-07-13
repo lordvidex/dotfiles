@@ -37,6 +37,7 @@
         "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/trouble.nvim/lua",
         "/Users/lordvidex/.local/share/nvim/site/pack/packer/start/which-key.nvim/lua",
         "/Users/lordvidex/.config/nvim/lua",
+        "${3rd}/luv/library",
         "${3rd}/luv/library"
     ],
     "workspace.checkThirdParty": false,
