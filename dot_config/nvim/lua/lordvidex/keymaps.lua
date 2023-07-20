@@ -27,6 +27,10 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
 
+-- Screen splitting shortcuts
+keymap("n", "<leader>sdv", ":vsplit<CR>gd", opts) -- split definition vertical
+keymap("n", "<leader>sds", ":split<CR>gd", opts) -- split definition horizontal
+
 -- Resize with arrows
 keymap("n", "<S-Up>", ":resize +2<CR>", opts)
 keymap("n", "<S-Down>", ":resize -2<CR>", opts)

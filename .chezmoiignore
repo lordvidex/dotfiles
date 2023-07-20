@@ -1,8 +1,10 @@
 LICENSE
+**/.luarc.json
+
 {{- if ne .chezmoi.os "linux" }}
 .bashrc
 .profile
 install.sh
 robotics_install.sh
+Fonts/
 {{ end }}
-.luarc.json

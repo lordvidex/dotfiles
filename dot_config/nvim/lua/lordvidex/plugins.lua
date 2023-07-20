@@ -13,12 +13,13 @@ end
 local packer_bootstrap = ensure_packer() -- true if packer was just installed
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
+-- This is dangerous as it syncs updates and they might contain breaking changes
+-- vim.cmd([[
+--   augroup packer_user_config
+--     autocmd!
+--     autocmd BufWritePost plugins.lua source <afile> | PackerSync
+--   augroup end
+-- ]])
 
 require('packer').startup(function(use)
   -- install the following configs
@@ -87,7 +88,7 @@ require('packer').startup(function(use)
   --   vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
   -- end,
   -- }
-  use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
+  -- use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' } -- #uses too much memory
   use 'github/copilot.vim'
   use 'lukas-reineke/indent-blankline.nvim'
 
@@ -105,7 +106,10 @@ require('packer').startup(function(use)
 
   -- LSP
   use 'neovim/nvim-lspconfig' -- enable LSP
-  use 'glepnir/lspsaga.nvim'
+  use {
+    'glepnir/lspsaga.nvim',
+    commit = "8ea2afc51c548f2a468115d8f6bba57ac3957ef8"
+  }
   use 'ray-x/lsp_signature.nvim'
   use {
     "williamboman/mason.nvim",

@@ -22,4 +22,20 @@ require('lspsaga').setup {
     respect_root = false,
     color_mode = true,
   },
+  definition = {
+    keys = {
+      edit = '<C-c>o',
+      vsplit = '<C-c>v',
+      split = '<C-c>s',
+      tabe = '<C-c>t',
+      close = '<C-c>c',
+    }
+  },
+  finder = {
+    keys = {
+      vsplit = 'v',
+      split = 's',
+      close = '<C-c>c',
+    }
+  },
 }
