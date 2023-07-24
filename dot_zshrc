@@ -77,7 +77,7 @@ plugins=(
 	zsh-syntax-highlighting
 	zsh-autosuggestions
 	zsh-wakatime
-#  zsh-vi-mode
+  zsh-vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh

@@ -1,6 +1,11 @@
-#install neovim
-sudo snap install nvim
-# neovim related tools
+#!/bin/bash
+
+sudo apt-get update
+sudo apt-get upgrade
+# check if git does not exists
+if ! [ -x "$(command -v git)" ]; then
+  sudo apt-get install git
+fi
 
 # install fzf
 sudo apt install fzf
@@ -11,8 +16,6 @@ sudo apt-get install fd-find
 
 #install tmux
 sudo apt-get install -y tmux
-# install tmux package manager
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # install configuration sync-er
-sh -c "$(curl -fsLS get.chezmoi.io)"
+# sh -c "$(curl -fsLS get.chezmoi.io)"
