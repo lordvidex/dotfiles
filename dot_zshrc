@@ -112,6 +112,7 @@ export EDITOR='nvim'
 #
 # Custom Settings 
 # Java & Android 
+{{- if eq .chezmoi.os "darwin" -}}
 export PATH=$PATH:"/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven3/bin"
 export PATH=$PATH:/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home/bin
 export PATH=~/Library/Android/sdk/tools:$PATH
@@ -151,13 +152,15 @@ notify() {
 alias chrome='open -a "Google Chrome"'
 alias work="timer 60m && notify 'Break Time!, padi mi, stretch leg, drink water'"
 alias rest="timer 10m && notify 'Break is over! Get back to work 😊'"
+{{- end -}}
 
 # zsh-wakatime
 export ZSH_WAKATIME_PROJECT_DETECTION=true
 
-
-if [ -f $(brew --prefix)/etc/zsh_completion ]; then
-	. $(brew --prefix)/etc/zsh_completion
+if type brew &>/dev/null; then
+  if [ -f $(brew --prefix)/etc/zsh_completion ]; then
+    . $(brew --prefix)/etc/zsh_completion
+  fi
 fi
 # The next line updates PATH for Yandex Cloud CLI.
 if [ -f '$HOME/yandex-cloud/path.bash.inc' ]; then source '$HOME/yandex-cloud/path.bash.inc'; fi
