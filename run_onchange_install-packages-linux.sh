@@ -17,5 +17,8 @@ sudo apt-get install fd-find
 #install tmux
 sudo apt-get install -y tmux
 
+# install clipboard tools
+sudo apt install xsel
+
 # install configuration sync-er
 # sh -c "$(curl -fsLS get.chezmoi.io)"
