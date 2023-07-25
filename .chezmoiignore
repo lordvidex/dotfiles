@@ -4,7 +4,7 @@ LICENSE
 {{- if ne .chezmoi.os "linux" }}
 .bashrc
 .profile
-install.sh
+run_onchange_install-package-linux.sh
 robotics_install.sh
 Fonts/
 {{ end }}

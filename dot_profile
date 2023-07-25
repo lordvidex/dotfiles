@@ -28,4 +28,5 @@ fi
 
 # Go
 PATH=$PATH:/usr/local/go/bin
+PATH=$PATH:/usr/local/nvim/bin
 GOPATH=$HOME/go

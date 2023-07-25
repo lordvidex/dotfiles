@@ -44,10 +44,10 @@
 ###########################################################################
 # Linux only external archives
 ###########################################################################
-# {{- if ne .chezmoi.os "linux" }}
-# ["/usr/local/nvim"]
-#     type = "archive"
-#     url = "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz"
-#     exact = true
-#     stripComponents = 1
-# {{- end -}}
+{{- if eq .chezmoi.os "linux" }}
+["/usr/local/nvim"]
+    type = "archive"
+    url = "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz"
+    exact = true
+    stripComponents = 1
+{{- end -}}
