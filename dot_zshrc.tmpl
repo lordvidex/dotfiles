@@ -172,8 +172,9 @@ autoload -U compinit; compinit
 # ZVM configs (vim mode in zsh)
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
+{{- if eq .chezmoi.os "darwin" }}
 # fzf for fuzzy searching in the terminal
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+{{- end }}
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
