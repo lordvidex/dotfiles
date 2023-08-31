@@ -1,26 +1,18 @@
-require 'lordvidex.plugins'
-require 'lordvidex.colorscheme'
+-- boostrap lazy nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
 require 'lordvidex.options'
 require 'lordvidex.keymaps'
+require('lazy').setup('plugins')
 require 'lordvidex.utils'
-require 'lordvidex.cmp'
-require 'lordvidex.lsp'
-require 'lordvidex.telescope'
-require 'lordvidex.gitsigns'
-require 'lordvidex.autopairs'
-require 'lordvidex.treesitter'
-require 'lordvidex.comment'
-require 'lordvidex.nvim-tree'
-require 'lordvidex.bufferline'
-require 'lordvidex.toggleterm'
-require 'lordvidex.lualine'
-require 'lordvidex.indentline'
-require 'lordvidex.whichkey'
-require 'lordvidex.dap'
-require 'lordvidex.project'
-require 'lordvidex.vimwiki'
--- require 'lordvidex.autosave'
-require 'lordvidex.undotree'
-require 'lordvidex.aerial'
-require 'lordvidex.rest'
-require 'lordvidex.godbolt'
