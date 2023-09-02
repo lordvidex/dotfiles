@@ -27,7 +27,6 @@ return {
   { 'folke/tokyonight.nvim',                       lazy = true },
   -- Helpers
   'moll/vim-bbye',
-  'nvim-lualine/lualine.nvim',
 
   -- Productivity
   'wakatime/vim-wakatime',
