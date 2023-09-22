@@ -1,7 +1,7 @@
-local status_ok, lualine = pcall(require, 'lualine')
-if not status_ok then
-  return
-end
+return {
+  'nvim-lualine/lualine.nvim',
+  config = function() 
+local lualine = require('lualine')
 local exists, _ = pcall(require, 'codeium')
 local lualine_y = {}
 if exists then
@@ -27,4 +27,6 @@ lualine.setup {
   inactive_sections = {
     lualine_x = { 'encoding' }
   }
+}
+end,
 }

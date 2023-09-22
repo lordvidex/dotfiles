@@ -6,7 +6,7 @@ return {
   { 'nvim-lua/popup.nvim',   lazy = true },
   {
     'mbbill/undotree',
-    lazy = true,
+    event = 'BufEnter',
     config = function()
       vim.g.undotree_SetFocusWhenToggle = 1
     end
@@ -38,9 +38,11 @@ return {
 
   -- LSP
   'neovim/nvim-lspconfig', -- enable LSP
-  {'ray-x/lsp_signature.nvim', config = function()
-    require('lsp_signature').setup()
-  end,
+  {
+    'ray-x/lsp_signature.nvim',
+    config = function()
+      require('lsp_signature').setup()
+    end,
   },
   {
     "williamboman/mason.nvim",
@@ -60,7 +62,7 @@ return {
   { 'nvim-treesitter/nvim-treesitter-refactor', dependencies = 'nvim-treesitter/nvim-treesitter' }, -- this provides gotodef when lsp is buggy
 
   -- flutter
-  { 'dart-lang/dart-vim-plugin', ft = 'dart' },
+  { 'dart-lang/dart-vim-plugin',                ft = 'dart' },
 
   -- 'fatih/vim-go',
   {
