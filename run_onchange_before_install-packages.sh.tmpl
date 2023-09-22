@@ -27,6 +27,7 @@ zsh --version &>/dev/null
 if [[ "$?" -eq 0 ]]; then
   chsh -s $(which zsh)
 fi
-# install configuration sync-er
-# sh -c "$(curl -fsLS get.chezmoi.io)"
+
+# install kitty
+sudo apt-get install kitty
 {{- end -}}
