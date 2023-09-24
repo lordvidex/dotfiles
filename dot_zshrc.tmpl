@@ -109,6 +109,10 @@ export EDITOR='nvim'
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
+{{ if eq .chezmoi.os "linux" }}
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o' 
+{{- end }}
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 # Custom Settings 
