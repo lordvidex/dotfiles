@@ -4,10 +4,7 @@ return {
     "nvim-tree/nvim-web-devicons", -- https://github.com/nvim-tree/nvim-web-devicons
   },
   config = function()
-    local status_ok, nvim_tree = pcall(require, "nvim-tree")
-    if not status_ok then
-      return
-    end
+    local nvim_tree = require'nvim-tree'
 
     -- on_attach function for key mappings to the buffer
     local function on_attach(bufnr)
