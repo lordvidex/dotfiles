@@ -131,8 +131,6 @@ export PATH=$PATH:$HOME/.pub-cache/bin
 # 🐍
 export PATH=$PATH:$HOME/Library/Python/3.8/bin
 export PATH="/usr/local/opt/libpq/bin:$PATH"
-# Go
-export PATH=$PATH:$(go env GOPATH)/bin
 # Manual NVIM
 export PATH=$PATH:/usr/local/lib/nvim/bin
 # Ruby 
@@ -161,6 +159,8 @@ alias rest="timer 10m && notify 'Break is over! Get back to work 😊'"
 
 # zsh-wakatime
 export ZSH_WAKATIME_PROJECT_DETECTION=true
+# Go
+export PATH=$PATH:$(go env GOPATH)/bin
 
 if type brew &>/dev/null; then
   if [ -f $(brew --prefix)/etc/zsh_completion ]; then
