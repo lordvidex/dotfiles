@@ -13,6 +13,7 @@ return {
   },
   {
     'echasnovski/mini.files',
+    dependencies = 'nvim-tree/nvim-web-devicons',
     version = '*',
     config = function()
       require('mini.files').setup()
@@ -66,7 +67,7 @@ return {
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   { 'nvim-treesitter/playground',               dependencies = 'nvim-treesitter/nvim-treesitter' },
-  { 'nvim-treesitter/nvim-treesitter-refactor', dependencies = 'nvim-treesitter/nvim-treesitter' },    -- this provides gotodef when lsp is buggy
+  { 'nvim-treesitter/nvim-treesitter-refactor', dependencies = 'nvim-treesitter/nvim-treesitter' }, -- this provides gotodef when lsp is buggy
 
   -- flutter
   { 'dart-lang/dart-vim-plugin',                ft = 'dart' },
@@ -81,6 +82,7 @@ return {
       })
     end
   },
+  'terrastruct/d2-vim',
 
   -- Rust
   -- 'simrat39/rust-tools.nvim', -- not needed LSP is enough
