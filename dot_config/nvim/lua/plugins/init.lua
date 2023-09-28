@@ -12,12 +12,10 @@ return {
     end
   },
   {
-    'stevearc/oil.nvim',
-    opts = {},
-    -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function ()
-      require('oil').setup{}
+    'echasnovski/mini.files',
+    version = '*',
+    config = function()
+      require('mini.files').setup()
     end
   },
   -- {
@@ -68,7 +66,7 @@ return {
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   { 'nvim-treesitter/playground',               dependencies = 'nvim-treesitter/nvim-treesitter' },
-  { 'nvim-treesitter/nvim-treesitter-refactor', dependencies = 'nvim-treesitter/nvim-treesitter' }, -- this provides gotodef when lsp is buggy
+  { 'nvim-treesitter/nvim-treesitter-refactor', dependencies = 'nvim-treesitter/nvim-treesitter' },    -- this provides gotodef when lsp is buggy
 
   -- flutter
   { 'dart-lang/dart-vim-plugin',                ft = 'dart' },

@@ -3,8 +3,9 @@ return {
   dependencies = {
     "nvim-tree/nvim-web-devicons", -- https://github.com/nvim-tree/nvim-web-devicons
   },
+  cond = false,
   config = function()
-    local nvim_tree = require'nvim-tree'
+    local nvim_tree = require 'nvim-tree'
 
     -- on_attach function for key mappings to the buffer
     local function on_attach(bufnr)

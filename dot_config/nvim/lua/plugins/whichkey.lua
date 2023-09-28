@@ -97,8 +97,8 @@ return {
     }
 
     local global_mappings = {
-      ["a"] = { "<cmd>Navbuddy<CR>", "show buffer symbols" },
-      ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
+      ["s"] = { "<cmd>Navbuddy<CR>", "buffer [s]ymbols" },
+      ["e"] = { "<cmd>lua MiniFiles.open()<CR>", "Explorer" },
       ["c"] = { "<cmd>Bdelete<CR>", "Close Buffer" },
       ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
       ["u"] = { "<cmd>UndotreeToggle<CR>", "UndoTree" },
