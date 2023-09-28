@@ -157,14 +157,6 @@ return {
           "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>",
           "Workspace Symbols",
         },
-        -- Database
-        D = {
-          name = "Database",
-          u = { "<Cmd>DBUIToggle<Cr>", "Toggle UI" },
-          f = { "<Cmd>DBUIFindBuffer<Cr>", "Find buffer" },
-          r = { "<Cmd>DBUIRenameBuffer<Cr>", "Rename buffer" },
-          q = { "<Cmd>DBUILastQueryInfo<Cr>", "Last query info" },
-        },
       },
     }
 

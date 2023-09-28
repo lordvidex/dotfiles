@@ -11,6 +11,15 @@ return {
       vim.g.undotree_SetFocusWhenToggle = 1
     end
   },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function ()
+      require('oil').setup{}
+    end
+  },
   -- {
   --   'stevearc/stickybuf.nvim',
   --   config = function() require('stickybuf').setup() end

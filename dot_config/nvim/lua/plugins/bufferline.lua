@@ -10,9 +10,9 @@ return {
       return
     end
     local opts = {
-      mode = "n",   -- NORMAL mode
+      mode = "n",     -- NORMAL mode
       prefix = "<leader>",
-      silent = true, -- use `silent` when creating keymaps
+      silent = true,  -- use `silent` when creating keymaps
       noremap = true, -- use `noremap` when creating keymaps
       nowait = false, -- use `nowait` when creating keymaps
     }
@@ -20,26 +20,17 @@ return {
       b = {
         l = { '<cmd>BufferLineSortByExtension<CR>', 'sort by language' },
       },
-      ['1'] = { '<cmd>BufferLineGoToBuffer 1<CR>', 'goto Buffer 1' },
-      ['2'] = { '<cmd>BufferLineGoToBuffer 2<CR>', 'goto Buffer 2' },
-      ['3'] = { '<cmd>BufferLineGoToBuffer 3<CR>', 'goto Buffer 3' },
-      ['4'] = { '<cmd>BufferLineGoToBuffer 4<CR>', 'goto Buffer 4' },
-      ['5'] = { '<cmd>BufferLineGoToBuffer 5<CR>', 'goto Buffer 5' },
-      ['6'] = { '<cmd>BufferLineGoToBuffer 6<CR>', 'goto Buffer 6' },
-      ['7'] = { '<cmd>BufferLineGoToBuffer 7<CR>', 'goto Buffer 7' },
-      ['8'] = { '<cmd>BufferLineGoToBuffer 8<CR>', 'goto Buffer 8' },
-      ['9'] = { '<cmd>BufferLineGoToBuffer 9<CR>', 'goto Buffer 9' },
     }
     wk.register(mappings, opts)
 
     -- initialize bufferline
     bufferline.setup {
       options = {
-        numbers = "ordinal",               -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-        close_command = "Bdelete! %d",     -- can be a string | function, see "Mouse actions"
+        numbers = "ordinal",                 -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+        close_command = "Bdelete! %d",       -- can be a string | function, see "Mouse actions"
         right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
-        left_mouse_command = "buffer %d",  -- can be a string | function, see "Mouse actions"
-        middle_mouse_command = nil,        -- can be a string | function, see "Mouse actions"
+        left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
+        middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
         -- NOTE: this plugin is designed with this icon in mind,
         -- and so changing this is NOT recommended, this is intended
         -- as an escape hatch for people who cannot bear it for whatever reason
@@ -63,7 +54,7 @@ return {
         --   end
         -- end,
         max_name_length = 30,
-        max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
+        max_prefix_length = 30,   -- prefix used when a buffer is de-duplicated
         tab_size = 21,
         diagnostics = 'nvim_lsp', -- | "nvim_lsp" | "coc",
         diagnostics_update_in_insert = false,

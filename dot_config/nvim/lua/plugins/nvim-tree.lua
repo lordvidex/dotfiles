@@ -36,7 +36,7 @@ return {
       hijack_netrw = true,
       update_focused_file = {
         enable = true,
-        update_cwd = true,
+        update_cwd = false,
       },
       on_attach = on_attach,
       filters = {
