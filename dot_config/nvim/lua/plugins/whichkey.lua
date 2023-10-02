@@ -98,9 +98,8 @@ return {
 
     local global_mappings = {
       ["s"] = { "<cmd>Navbuddy<CR>", "buffer [s]ymbols" },
-      ["e"] = { "<cmd>lua MiniFiles.open()<CR>", "Explorer" },
+      ["e"] = { "<cmd>Neotree toggle reveal<CR>", "Explorer" },
       ["c"] = { "<cmd>Bdelete<CR>", "Close Buffer" },
-      ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
       ["u"] = { "<cmd>UndotreeToggle<CR>", "UndoTree" },
       p = { "<cmd>ProjectRoot<CR>", "Set project root" },
       f = {

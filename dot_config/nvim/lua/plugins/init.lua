@@ -14,6 +14,7 @@ return {
   {
     'echasnovski/mini.files',
     dependencies = 'nvim-tree/nvim-web-devicons',
+    cond = false,
     version = '*',
     config = function()
       require('mini.files').setup()

@@ -7,7 +7,7 @@ return {
     ibl.setup({
       show_current_context = true, -- TODO: change to false if slow
       enabled = true,
-      indent = { char = "|" },     --  "▎"
+      indent = { char = "▎" },     --  "▎"
       exclude = {
         filetypes = {
           "help",
