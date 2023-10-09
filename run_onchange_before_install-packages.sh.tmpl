@@ -1,6 +1,6 @@
 #!/bin/bash
 
-{{ if eq .chezmoi.os "linux" }}
+{{- if eq .chezmoi.os "linux" }}
 sudo apt-get update
 sudo apt-get upgrade
 # check if git does not exists
@@ -30,4 +30,16 @@ fi
 
 # install kitty
 sudo apt-get install kitty
-{{- end -}}
+
+# install neovim
+if ! [ -x "$(command -v nvim)" ]; then
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+  chmod u+x nvim.appimage
+  mkdir -p ~/bin/
+  mv nvim.appimage ~/bin/nvim
+fi
+{{- end }}
+
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi

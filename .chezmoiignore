@@ -2,8 +2,6 @@ LICENSE
 **/.luarc.json
 
 {{- if ne .chezmoi.os "linux" }}
-.bashrc
-.profile
 run_onchange_install-package-linux.sh
 robotics_install.sh
 Fonts/
@@ -11,4 +9,5 @@ Fonts/
 
 {{- if ne .chezmoi.os "darwin" }}
 Brewfile
+.zshenv
 {{ end }}
