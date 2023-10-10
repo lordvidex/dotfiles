@@ -11,12 +11,13 @@ fi
 # install fzf
 sudo apt install fzf
 # install ripgrep
-sudo apt-get install ripgrep
+sudo apt-get install ripgrep 
 # install fd
 sudo apt-get install fd-find
 
 #install tmux
 sudo apt-get install -y tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm #tpm
 
 # install clipboard tools
 sudo apt install xsel
@@ -29,6 +30,7 @@ if [[ "$?" -eq 0 ]]; then
 fi
 
 # install kitty
+# TODO: check for display?
 sudo apt-get install kitty
 
 # install neovim
@@ -42,4 +44,19 @@ fi
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  git clone https://github.com/wbingli/zsh-wakatime.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-wakatime
+fi
+
+if ! [ -x "$(command -v go)" ]; then
+  {{- if eq .chezmoi.os "linux" }}
+  curl -OL https://go.dev/dl/go1.21.2.linux-amd64.tar.gz
+  sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.2.linux-amd64.tar.gz
+  rm -rf go1.21.2.linux-amd64.tar.gz
+  {{- else if eq .chezmoi.os "darwin" }}
+  brew install go
+  {{- end }}
+  go version
 fi
