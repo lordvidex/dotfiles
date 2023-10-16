@@ -83,13 +83,13 @@ return {
           ["<C-j>"] = cmp.mapping.select_next_item(),
           ["<C-S-f>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
           ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
-          ["<C-l>"] = function()
-            -- TODO: check for copilot completions
-            local copilot_keys = vim.fn['copilot#Accept']()
-            if copilot_keys ~= '' and type(copilot_keys) == 'string' then
-              vim.api.nvim_feedkeys(copilot_keys, 'i', true)
-            end
-          end,
+          -- ["<C-l>"] = function()
+          --   -- TODO: check for copilot completions
+          --   local copilot_keys = vim.fn['copilot#Accept']()
+          --   if copilot_keys ~= '' and type(copilot_keys) == 'string' then
+          --     vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+          --   end
+          -- end,
           ["<C-Space>"] = cmp.mapping(cmp.mapping.complete()),
           ["<C-y>"] = cmp.config.disable, -- specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping
           ["<C-e>"] = cmp.mapping {
