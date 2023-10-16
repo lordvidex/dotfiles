@@ -5,7 +5,6 @@ return {
     local ibl = require "ibl"
 
     ibl.setup({
-      show_current_context = true, -- TODO: change to false if slow
       enabled = true,
       indent = { char = "▎" },     --  "▎"
       exclude = {
