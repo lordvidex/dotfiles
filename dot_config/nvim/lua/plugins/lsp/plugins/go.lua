@@ -75,6 +75,7 @@ return {
   dependencies = {
     { 'ray-x/guihua.lua', build = 'cd lua/fzy && make' },
   },
+  commit = '019936780060efc64c0f22a47afd08fbbe82e026',
   config = function()
     local go = require 'go'
     go.setup {
