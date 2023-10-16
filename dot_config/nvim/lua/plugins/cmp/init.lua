@@ -18,7 +18,6 @@ return {
     },
     config = function()
       require('plugins.cmp.tabnine') -- require tabnine
-      -- require('plugins.cmp.codeium')
 
       local cmp_status_ok, cmp = pcall(require, "cmp")
       if not cmp_status_ok then
@@ -177,12 +176,15 @@ return {
   },
   -- CMP
   -- autocompletion: codeium = tabnine + copilot (but codeium has issues, jeez, messing with <Esc> and insert mode)
-  -- { 'Exafunction/codeium.vim', config = function()
-  --   vim.keymap.set('i', '<Tab>', function() return vim.fn['codeium#Accept']() end, { expr = true })
-  --   vim.keymap.set('i', '<c-]>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
-  --   vim.keymap.set('i', '<c-[>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
-  --   vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
-  -- end,
-  -- },
+  {
+    'Exafunction/codeium.vim',
+    config = function()
+    vim.g.codeium_disable_bindings = 1
+    vim.keymap.set('i', '<C-m>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+    vim.keymap.set('i', '<c-n>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+    vim.keymap.set('i', '<c-p>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+    vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+  end,
+  },
   -- { 'tzachar/cmp-tabnine', build = './install.sh', dependencies = 'hrsh7th/nvim-cmp' }, -- #uses too much memory
 }

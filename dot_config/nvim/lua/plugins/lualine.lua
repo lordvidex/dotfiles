@@ -2,7 +2,8 @@ return {
   'nvim-lualine/lualine.nvim',
   config = function() 
 local lualine = require('lualine')
-local exists, _ = pcall(require, 'codeium')
+-- local exists = vim.g.loaded_codeium == 1 -- when set, pickers enter insert mode instead of normal mode
+local exists = false
 local lualine_y = {}
 if exists then
   table.insert(lualine_y, '%3{codeium#GetStatusString()}')
