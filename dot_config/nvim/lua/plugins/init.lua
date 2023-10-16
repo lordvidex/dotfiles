@@ -87,14 +87,6 @@ return {
 
   -- Rust
   -- 'simrat39/rust-tools.nvim', -- not needed LSP is enough
-
-  -- Markdown
-  {
-    'iamcco/markdown-preview.nvim',
-    build = 'cd app && yarn install',
-    ft = 'markdown',
-    lazy = true,
-  },
   -- assembly
   'p00f/godbolt.nvim',
 }
