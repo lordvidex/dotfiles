@@ -4,6 +4,7 @@ return {
   'sindrets/diffview.nvim',
   {
     'lewis6991/gitsigns.nvim',
+    tag = 'v0.6',
     config = function()
       local gitsigns = require 'gitsigns'
       gitsigns.setup {
