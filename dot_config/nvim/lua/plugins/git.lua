@@ -52,4 +52,20 @@ return {
       }
     end,
   },
+  {
+    'linrongbin16/gitlinker.nvim',
+    keys = {
+      { "<leader>gy", "<cmd>GitLink<cr>", desc = "Git copy permalink", mode = { "n", "v" } },
+    },
+    lazy = false,
+    config = function()
+      require 'gitlinker'.setup({
+        router = {
+          browse = {
+            ["gitlab.-$"] = require('gitlinker.routers').gitlab_browse,
+          }
+        }
+      })
+    end,
+  },
 }
