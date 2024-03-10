@@ -46,6 +46,7 @@ return {
         lua_ls = true,
         gopls = true,
         tsserver = true,
+        yamlls = true,
       }
 
       local mason_lspconfig = require 'mason-lspconfig'
