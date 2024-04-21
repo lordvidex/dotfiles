@@ -75,7 +75,6 @@ return {
   dependencies = {
     { 'ray-x/guihua.lua', build = 'cd lua/fzy && make' },
   },
-  commit = 'd73ea5bc00f0d7b726b0ddfc29cea17a544459ba',
   config = function()
     local go = require 'go'
     go.setup {
@@ -83,7 +82,7 @@ return {
       -- NOTE: is not related to core.plugins.lsp
       -- NOTE: manages LSP on its own
       go = "go",                -- go command, can be go[default] or go1.18beta1
-      goimport = "gopls",       -- goimport command, can be gopls[default] or goimport
+      goimports = "gopls",       -- goimport command, can be gopls[default] or goimport
       fillstruct = "gopls",     -- can be nil (use fillstruct, slower) and gopls
       gofmt = "gofumpt",        -- gofmt cmd,
       max_line_len = 120,       -- max line length in goline format

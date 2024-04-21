@@ -24,10 +24,6 @@ return {
   --   'stevearc/stickybuf.nvim',
   --   config = function() require('stickybuf').setup() end
   -- },
-  {
-    'ggandor/lightspeed.nvim',
-    dependencies = { 'tpope/vim-repeat' },
-  },
   'mg979/vim-visual-multi', -- multi cursors
   -- 'RRethy/vim-illuminate',     -- highlight instances of the word under the cursor (not needed)
 
