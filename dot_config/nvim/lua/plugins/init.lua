@@ -24,6 +24,10 @@ return {
   --   'stevearc/stickybuf.nvim',
   --   config = function() require('stickybuf').setup() end
   -- },
+  {
+    'ggandor/lightspeed.nvim',
+    dependencies = { 'tpope/vim-repeat' },
+  },
   'mg979/vim-visual-multi', -- multi cursors
   -- 'RRethy/vim-illuminate',     -- highlight instances of the word under the cursor (not needed)
 
@@ -34,7 +38,7 @@ return {
   'moll/vim-bbye',
 
   -- Productivity
-  'wakatime/vim-wakatime',
+  -- 'wakatime/vim-wakatime',
   'tpope/vim-surround',
 
   -- Snippet support
@@ -42,7 +46,12 @@ return {
   'rafamadriz/friendly-snippets',
 
   -- LSP
-  'neovim/nvim-lspconfig', -- enable LSP
+  {
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      'saghen/blink.cmp',
+    }
+  }, -- enable LSP
   {
     'ray-x/lsp_signature.nvim',
     config = function()
@@ -77,6 +86,18 @@ return {
       require('go-heat').setup({
         open_in = 'terminal',
       })
+    end
+  },
+  -- LaTeX
+  {
+    "lervag/vimtex",
+    lazy = false, -- we don't want to lazy load VimTeX
+    -- tag = "v2.15", -- uncomment to pin to a specific release
+    init = function()
+      -- VimTeX configuration goes here, e.g.
+      vim.g.vimtex_view_method = "skim"
+      vim.g.vimtex_view_skim_reading_bar = 1
+      -- vim.g.
     end
   },
   'terrastruct/d2-vim',

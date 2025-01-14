@@ -46,7 +46,7 @@ return {
     -- setup whichkey shortcuts for debugger
     local whichkey_ok, whichkey = pcall(require, 'which-key')
     if whichkey_ok then
-      whichkey.register({
+      whichkey.add({
         -- register with no prefix
         ["<F5>"] = { "<cmd>lua require('dap').continue()<CR>", "St[a]rt Debug" },
         ["<F9>"] = { "<cmd>lua require('dap').toggle_breakpoint()<CR>", "Create" },
@@ -55,42 +55,28 @@ return {
         ["<F12>"] = { "<cmd>lua require('dap').step_out()<CR>", "Step out" },
       })
 
-      whichkey.register({
+      whichkey.add({
         -- register with <leader> prefix
-        d = {
-          name = "Debug",
-          j = { "<cmd>lua require('dap').down()<CR>", "Down" },
-          k = { "<cmd>lua require('dap').up()<CR>", "Up" },
-          u = {
-            name = "UI",
-            h = { "<cmd>lua require('dap.ui.widgets').hover()<CR>", "Hover" },
-            f = { "<cmd>lua local widgets=require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<CR>", "Float" },
-            i = { "<cmd>lua require('dapui').toggle()<CR>", "Toggle UI" },
-          },
-          r = {
-            name = "Repl",
-            o = { "<cmd>lua require('dap').repl.open()<CR>", "Open" },
-            l = { "<cmd>lua require('dap').repl.run_last()<CR>", "Run Last" },
-          },
-          b = {
-            name = "BreakPoints",
-            c = {
-              "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-              "Breakpoint Condition",
-            },
-            d = { "<cmd>lua require('dap').clear_breakpoints()<CR>", "[D]elete all breakpoints" },
-            m = {
-              "<cmd>lua require('dap').set_breakpoint({nil, nil, vim.fn.input('Log point message: ') })<CR>",
-              "Log Point Message",
-            },
-            b = { "<cmd>lua require('dap').toggle_breakpoint()<CR>", "Create" },
-          },
-          q = { "<cmd>lua require('dap').terminate()<CR>", "[Q]uit debugger" },
-          f = { "<cmd>Telescope dap frames<CR>", "Telescope DAP frames" },
-          l = { "<cmd>Telescope dap list_breakpoints<CR>", "Telescope DAP Breakpoints" },
-          v = { "<cmd>Telescope dap variables<CR>", "Telescope DAP variables" },
-        }
-      }, { prefix = "<leader>" })
+        { "<leader>d",   group = "Debug" },
+        { "<leader>db",  group = "BreakPoints" },
+        { "<leader>dbb", "<cmd>lua require('dap').toggle_breakpoint()<CR>",                                              desc = "Create" },
+        { "<leader>dbc", "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",           desc = "Breakpoint Condition" },
+        { "<leader>dbd", "<cmd>lua require('dap').clear_breakpoints()<CR>",                                              desc = "[D]elete all breakpoints" },
+        { "<leader>dbm", "<cmd>lua require('dap').set_breakpoint({nil, nil, vim.fn.input('Log point message: ') })<CR>", desc = "Log Point Message" },
+        { "<leader>df",  "<cmd>Telescope dap frames<CR>",                                                                desc = "Telescope DAP frames" },
+        { "<leader>dj",  "<cmd>lua require('dap').down()<CR>",                                                           desc = "Down" },
+        { "<leader>dk",  "<cmd>lua require('dap').up()<CR>",                                                             desc = "Up" },
+        { "<leader>dl",  "<cmd>Telescope dap list_breakpoints<CR>",                                                      desc = "Telescope DAP Breakpoints" },
+        { "<leader>dq",  "<cmd>lua require('dap').terminate()<CR>",                                                      desc = "[Q]uit debugger" },
+        { "<leader>dr",  group = "Repl" },
+        { "<leader>drl", "<cmd>lua require('dap').repl.run_last()<CR>",                                                  desc = "Run Last" },
+        { "<leader>dro", "<cmd>lua require('dap').repl.open()<CR>",                                                      desc = "Open" },
+        { "<leader>du",  group = "UI" },
+        { "<leader>duf", "<cmd>lua local widgets=require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<CR>",  desc = "Float" },
+        { "<leader>duh", "<cmd>lua require('dap.ui.widgets').hover()<CR>",                                               desc = "Hover" },
+        { "<leader>dui", "<cmd>lua require('dapui').toggle()<CR>",                                                       desc = "Toggle UI" },
+        { "<leader>dv",  "<cmd>Telescope dap variables<CR>",                                                             desc = "Telescope DAP variables" },
+      })
     end
 
     local dapui_ok, dapui = pcall(require, 'dapui')

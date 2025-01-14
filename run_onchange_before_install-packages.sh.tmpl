@@ -25,6 +25,18 @@ if ! [ -x "$(command -v go)" ]; then
   {{- end }}
   go version
 fi
+# -----------------------------------------------
+# MacOS
+# -----------------------------------------------
+{{- if eq .chezmoi.os "darwin" }}
+# install brew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+PATH="/opt/homebrew/bin:$PATH"
+brew install nvim
+brew install go
+brew install node
+brew install tmux
+{{- end}}
 
 # ------------------------------------------------
 # Linux

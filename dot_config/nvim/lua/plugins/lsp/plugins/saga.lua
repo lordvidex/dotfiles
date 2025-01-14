@@ -1,6 +1,6 @@
 return {
   'glepnir/lspsaga.nvim',
-  commit = "8ea2afc51c548f2a468115d8f6bba57ac3957ef8",
+  -- commit = "8ea2afc51c548f2a468115d8f6bba57ac3957ef8",
   config = function()
     require('lspsaga').setup {
       ui = {

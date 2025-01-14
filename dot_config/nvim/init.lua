@@ -14,8 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require 'lordvidex.options'
 require 'lordvidex.keymaps'
-local utils = require 'lordvidex.utils'
+require 'lordvidex.utils'
 
 require('lazy').setup('plugins')
-
-utils.setup_after()

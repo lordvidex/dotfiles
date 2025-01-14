@@ -55,7 +55,6 @@ return {
         automatic_installation = true,
       })
 
-
       local lspconfig = require "lspconfig"
       mason_lspconfig.setup_handlers {
         -- The first entry (without a key) will be the default handler
@@ -66,6 +65,10 @@ return {
             on_attach = require("plugins.lsp.handlers").on_attach,
             capabilities = require("plugins.lsp.handlers").capabilities,
           }
+          local blink_ok, blink = pcall(require, 'blink.cmp')
+          if blink_ok then
+            opts.capabilities = require('blink.cmp').get_lsp_capabilities(opts.capabilities)
+          end
           local require_ok, conf_opts = pcall(require, "plugins.lsp.settings." .. server_name)
           if require_ok then
             opts = vim.tbl_deep_extend("force", conf_opts, opts)

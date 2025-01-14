@@ -12,7 +12,6 @@ return {
       popup_border_style = "rounded",
       enable_git_status = true,
       enable_diagnostics = true,
-      enable_normal_mode_for_inputs = false,                             -- Enable normal mode for input dialogs.
       open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
       sort_case_insensitive = false,                                     -- used when sorting files and directories in the tree
       sort_function = nil,                                               -- use a custom function for sorting files and directories in the tree
@@ -45,6 +44,17 @@ return {
           folder_closed = "",
           folder_open = "",
           folder_empty = "󰜌",
+          provider = function(icon, node, state) -- default icon provider utilizes nvim-web-devicons if available
+              if node.type == "file" or node.type == "terminal" then
+                local success, web_devicons = pcall(require, "nvim-web-devicons")
+                local name = node.type == "terminal" and "terminal" or node.name
+                if success then
+                  local devicon, hl = web_devicons.get_icon(name)
+                  icon.text = devicon or icon.text
+                  icon.highlight = hl or icon.highlight
+                end
+              end
+          end,
           -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
           -- then these will never be used.
           default = "*",
@@ -172,6 +182,9 @@ return {
           },
           always_show = { -- remains visible even if other settings would normally hide it
             --".gitignored",
+          },
+          always_show_by_pattern = {
+            "*/.o3",
           },
           never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
             --".DS_Store",

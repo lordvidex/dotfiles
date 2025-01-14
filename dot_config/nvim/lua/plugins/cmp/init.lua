@@ -1,4 +1,5 @@
 return {
+  { import = 'plugins.cmp.blink' },
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
@@ -8,6 +9,7 @@ return {
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'saadparwaiz1/cmp_luasnip',
+      'Snikimonkd/cmp-go-pkgs',
       {
         'github/copilot.vim',
         event = 'InsertEnter',
@@ -129,7 +131,8 @@ return {
               luasnip = "[Snip]",
               buffer = "[Buf]",
               path = "[Path]",
-              cmp_tabnine = '[TN]'
+              cmp_tabnine = '[TN]',
+              go_pkgs = '[pkg]'
             })[entry.source.name]
             return vim_item
           end,
@@ -141,6 +144,7 @@ return {
           { name = 'cmp_tabnine' },
           { name = "nvim_lua",   keyword_length = 2 },
           { name = "path" },
+          { name = 'go_pkgs' }
         },
         confirm_opts = {
           behavior = cmp.ConfirmBehavior.Replace,
@@ -179,12 +183,12 @@ return {
   {
     'Exafunction/codeium.vim',
     config = function()
-    vim.g.codeium_disable_bindings = 1
-    vim.keymap.set('i', '<C-m>', function() return vim.fn['codeium#Accept']() end, { expr = true })
-    vim.keymap.set('i', '<c-n>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
-    vim.keymap.set('i', '<c-p>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
-    vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
-  end,
+      vim.g.codeium_disable_bindings = 1
+      vim.keymap.set('i', '<C-l>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+      vim.keymap.set('i', '<c-n>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+      vim.keymap.set('i', '<c-p>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+      vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+    end,
   },
   -- { 'tzachar/cmp-tabnine', build = './install.sh', dependencies = 'hrsh7th/nvim-cmp' }, -- #uses too much memory
 }

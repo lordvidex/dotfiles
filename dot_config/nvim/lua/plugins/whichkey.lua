@@ -87,98 +87,93 @@ return {
       }
     }
 
-    local global_opts = {
-      mode = "n",     -- NORMAL mode
-      prefix = "<leader>",
-      buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true,  -- use `silent` when creating keymaps
-      noremap = true, -- use `noremap` when creating keymaps
-      nowait = true,  -- use `nowait` when creating keymaps
-    }
 
     local global_mappings = {
-      ["s"] = { "<cmd>Navbuddy<CR>", "buffer [s]ymbols" },
-      ["e"] = { "<cmd>Neotree toggle reveal<CR>", "Explorer" },
-      ["c"] = { "<cmd>Bdelete<CR>", "Close Buffer" },
-      ["u"] = { "<cmd>UndotreeToggle<CR>", "UndoTree" },
-      p = { "<cmd>ProjectRoot<CR>", "Set project root" },
-      f = {
-        name = "Telescope [Find]",
-        f = { "<cmd>lua require('telescope.builtin').find_files()<CR>", "Find files" },
-        g = { "<cmd>lua require('telescope.builtin').live_grep()<CR>", "Find Text [g]rep search" },
-        b = { "<cmd>lua require('telescope.builtin').buffers()<CR>", "Find in [b]uffers" },
-        h = { "<cmd>lua require('telescope.builtin').help_tags()<CR>", "Find in [h]elp" },
-        x = { "<cmd>lua require('telescope.builtin').treesitter()<CR>", "Treesitter" },
-        p = { "<cmd>lua require('telescope').extensions.projects.projects()<CR>", "Projects" },
-        ["/"] = { "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", "Find in current buffer" },
-        m = { "<cmd>Telescope man_pages<CR>", "Man Pages" },
-        r = { "<cmd>Telescope oldfiles<CR>", "Open Recent File" },
-        R = { "<cmd>Telescope registers<CR>", "Registers" },
-        k = { "<cmd>Telescope keymaps<CR>", "Keymaps" },
-        c = { "<cmd>Telescope commands<CR>", "Commands" },
-        l = { "<cmd>Telescope resume<CR>", "Resume last picker" },
-      },
-      g = {
-        name = "Git",
-        l = { "<cmd>lua require 'gitsigns'.blame_line()<CR>", "Blame" },
-        p = { "<cmd>lua require 'gitsigns'.preview_hunk()<CR>", "Preview Hunk" },
-        r = { "<cmd>lua require 'gitsigns'.reset_hunk()<CR>", "Reset Hunk" },
-        R = { "<cmd>lua require 'gitsigns'.reset_buffer()<CR>", "Reset Buffer" },
-        s = { "<cmd>lua require 'gitsigns'.stage_hunk()<CR>", "Stage Hunk" },
-        u = {
-          "<cmd>lua require 'gitsigns'.undo_stage_hunk()<CR>",
-          "Undo Stage Hunk",
-        },
-        o = { "<cmd>Telescope git_status<CR>", "Open changed file" },
-        b = { "<cmd>Telescope git_branches<CR>", "Checkout branch" },
-        c = { "<cmd>Telescope git_commits<CR>", "Checkout commit" },
-        d = { "<cmd>DiffviewOpen<CR>", "Diff" }
-      },
-      l = {
-        name = "LSP",
-        d = {
-          "<cmd>Telescope diagnostics bufnr=0<CR>",
-          "Document Diagnostics",
-        },
-        i = { "<cmd>Lspsaga incoming_calls<CR>", "Incoming Calls" },
-        o = { "<cmd>Lspsaga outgoing_calls<CR>", "Outgoing Calls" },
-        O = { "<cmd>Lspsaga outline<CR>", "Lspsaga [O]utline" },
-        f = { "<cmd>lua vim.lsp.buf.format{async=true}<CR>", "Format" },
-        l = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show Line Diagnostics" },
-        b = { "<cmd>Lspsaga show_buf_diagnostics<CR>", "Show Buffer Diagnostics" },
-        w = { "<cmd>Lspsaga show_workspace_diagnostics<CR>", "Show Workspace Diagnostics" },
-        c = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show Cursor Diagnostics" },
-        L = { "<cmd>lua vim.lsp.codelens.run()<CR>", "CodeLens Action" },
-        q = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Quickfix" },
-        r = { "<cmd>Lspsaga rename<CR>", "Rename" },
-        s = { "<cmd>Telescope lsp_document_symbols<CR>", "Document Symbols" },
-        S = {
-          "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>",
-          "Workspace Symbols",
-        },
-      },
-    }
-
-    local local_opts = {
-      mode = "n",
-      prefix = "<localleader>",
-      silent = true,
-      noremap = true,
-      nowait = true,
+      { "<leader>c",  "<cmd>Bdelete<CR>",                                                      desc = "Close Buffer",               nowait = true, remap = false },
+      { "<leader>e",  "<cmd>Neotree toggle reveal<CR>",                                        desc = "Explorer",                   nowait = true, remap = false },
+      { "<leader>f",  group = "Telescope [Find]",                                              nowait = true,                       remap = false },
+      { "<leader>f/", "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", desc = "Find in current buffer",     nowait = true, remap = false },
+      { "<leader>fR", "<cmd>Telescope registers<CR>",                                          desc = "Registers",                  nowait = true, remap = false },
+      { "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<CR>",                   desc = "Find in [b]uffers",          nowait = true, remap = false },
+      { "<leader>fc", "<cmd>Telescope commands<CR>",                                           desc = "Commands",                   nowait = true, remap = false },
+      { "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<CR>",                desc = "Find files",                 nowait = true, remap = false },
+      { "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<CR>",                 desc = "Find Text [g]rep search",    nowait = true, remap = false },
+      { "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<CR>",                 desc = "Find in [h]elp",             nowait = true, remap = false },
+      { "<leader>fk", "<cmd>Telescope keymaps<CR>",                                            desc = "Keymaps",                    nowait = true, remap = false },
+      { "<leader>fl", "<cmd>Telescope resume<CR>",                                             desc = "Resume last picker",         nowait = true, remap = false },
+      { "<leader>fm", "<cmd>Telescope man_pages<CR>",                                          desc = "Man Pages",                  nowait = true, remap = false },
+      { "<leader>fp", "<cmd>lua require('telescope').extensions.projects.projects()<CR>",      desc = "Projects",                   nowait = true, remap = false },
+      { "<leader>fr", "<cmd>Telescope oldfiles<CR>",                                           desc = "Open Recent File",           nowait = true, remap = false },
+      { "<leader>fx", "<cmd>lua require('telescope.builtin').treesitter()<CR>",                desc = "Treesitter",                 nowait = true, remap = false },
+      { "<leader>g",  group = "Git",                                                           nowait = true,                       remap = false },
+      { "<leader>gR", "<cmd>lua require 'gitsigns'.reset_buffer()<CR>",                        desc = "Reset Buffer",               nowait = true, remap = false },
+      { "<leader>gb", "<cmd>Telescope git_branches<CR>",                                       desc = "Checkout branch",            nowait = true, remap = false },
+      { "<leader>gc", "<cmd>Telescope git_commits<CR>",                                        desc = "Checkout commit",            nowait = true, remap = false },
+      { "<leader>gd", "<cmd>DiffviewOpen<CR>",                                                 desc = "Diff",                       nowait = true, remap = false },
+      { "<leader>gl", "<cmd>lua require 'gitsigns'.blame_line()<CR>",                          desc = "Blame",                      nowait = true, remap = false },
+      { "<leader>go", "<cmd>Telescope git_status<CR>",                                         desc = "Open changed file",          nowait = true, remap = false },
+      { "<leader>gp", "<cmd>lua require 'gitsigns'.preview_hunk()<CR>",                        desc = "Preview Hunk",               nowait = true, remap = false },
+      { "<leader>gr", "<cmd>lua require 'gitsigns'.reset_hunk()<CR>",                          desc = "Reset Hunk",                 nowait = true, remap = false },
+      { "<leader>gs", "<cmd>lua require 'gitsigns'.stage_hunk()<CR>",                          desc = "Stage Hunk",                 nowait = true, remap = false },
+      { "<leader>gu", "<cmd>lua require 'gitsigns'.undo_stage_hunk()<CR>",                     desc = "Undo Stage Hunk",            nowait = true, remap = false },
+      { "<leader>l",  group = "LSP",                                                           nowait = true,                       remap = false },
+      { "<leader>lL", "<cmd>lua vim.lsp.codelens.run()<CR>",                                   desc = "CodeLens Action",            nowait = true, remap = false },
+      { "<leader>lO", "<cmd>Lspsaga outline<CR>",                                              desc = "Lspsaga [O]utline",          nowait = true, remap = false },
+      { "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>",                      desc = "Workspace Symbols",          nowait = true, remap = false },
+      { "<leader>lb", "<cmd>Lspsaga show_buf_diagnostics<CR>",                                 desc = "Show Buffer Diagnostics",    nowait = true, remap = false },
+      { "<leader>lc", "<cmd>Lspsaga show_cursor_diagnostics<CR>",                              desc = "Show Cursor Diagnostics",    nowait = true, remap = false },
+      { "<leader>ld", "<cmd>Telescope diagnostics bufnr=0<CR>",                                desc = "Document Diagnostics",       nowait = true, remap = false },
+      { "<leader>lf", "<cmd>lua vim.lsp.buf.format{async=true}<CR>",                           desc = "Format",                     nowait = true, remap = false },
+      { "<leader>li", "<cmd>Lspsaga incoming_calls<CR>",                                       desc = "Incoming Calls",             nowait = true, remap = false },
+      { "<leader>ll", "<cmd>Lspsaga show_line_diagnostics<CR>",                                desc = "Show Line Diagnostics",      nowait = true, remap = false },
+      { "<leader>lo", "<cmd>Lspsaga outgoing_calls<CR>",                                       desc = "Outgoing Calls",             nowait = true, remap = false },
+      { "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>",                              desc = "Quickfix",                   nowait = true, remap = false },
+      { "<leader>lr", "<cmd>Lspsaga rename<CR>",                                               desc = "Rename",                     nowait = true, remap = false },
+      { "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>",                               desc = "Document Symbols",           nowait = true, remap = false },
+      { "<leader>lw", "<cmd>Lspsaga show_workspace_diagnostics<CR>",                           desc = "Show Workspace Diagnostics", nowait = true, remap = false },
+      { "<leader>p",  "<cmd>ProjectRoot<CR>",                                                  desc = "Set project root",           nowait = true, remap = false },
+      { "<leader>s",  "<cmd>Navbuddy<CR>",                                                     desc = "buffer [s]ymbols",           nowait = true, remap = false },
+      { "<leader>u",  "<cmd>UndotreeToggle<CR>",                                               desc = "UndoTree",                   nowait = true, remap = false },
     }
 
     local local_mappings = {
-      m = {
-        name = "Markdown",
-        m = { "<Plug>MarkdownPreviewToggle", "Toggle [M]arkdown Preview" },
-        a = { "<Plug>MarkdownPreview", "St[a]rt markdown Preview" },
-        s = { "<Plug>MarkdownPreviewStop", "[S]top Markdown Preview" },
-      }
+      { "<localleader>g",   group = "Golang",              nowait = true,                            remap = false },
+      { "<localleader>gc",  "<cmd>GoCmt<CR>",              desc = "Generate comment",                nowait = true, remap = false },
+      { "<localleader>ge",  "<cmd>GoIfErr<CR>",            desc = "Add if err",                      nowait = true, remap = false },
+      { "<localleader>gi",  "<cmd>GoToggleInlay<CR>",      desc = "Toggle inlay",                    nowait = true, remap = false },
+      { "<localleader>gl",  "<cmd>GoLint<CR>",             desc = "Run linter",                      nowait = true, remap = false },
+      { "<localleader>gm",  group = "Mod",                 nowait = true,                            remap = false },
+      { "<localleader>gmi", "<cmd>GoModInit<CR>",          desc = "Go mod init",                     nowait = true, remap = false },
+      { "<localleader>gmt", "<cmd>GoModTidy<CR>",          desc = "Go mod tidy",                     nowait = true, remap = false },
+      { "<localleader>go",  "<cmd>GoPkgOutline<CR>",       desc = "Outline",                         nowait = true, remap = false },
+      { "<localleader>gr",  "<cmd>GoRun<CR>",              desc = "Run",                             nowait = true, remap = false },
+      { "<localleader>gs",  group = "Struct",              nowait = true,                            remap = false },
+      { "<localleader>gsa", "<cmd>GoAddTag<CR>",           desc = "Add tags to struct",              nowait = true, remap = false },
+      { "<localleader>gsc", "<cmd>GoClearTag<CR>",         desc = "Clear tags",                      nowait = true, remap = false },
+      { "<localleader>gsf", "<cmd>GoFillStruct<CR>",       desc = "[F]ill the Struct",               nowait = true, remap = false },
+      { "<localleader>gsr", "<cmd>GoRmTag<CR>",            desc = "Remove tags to struct",           nowait = true, remap = false },
+      { "<localleader>gt",  group = "Tests",               nowait = true,                            remap = false },
+      { "<localleader>gtA", "<cmd>GoAddExpTest<CR>",       desc = "Add test to func with example",   nowait = true, remap = false },
+      { "<localleader>gtF", "<cmd>GoTestFile<CR>",         desc = "Run test for current file",       nowait = true, remap = false },
+      { "<localleader>gta", "<cmd>GoAddTest<CR>",          desc = "Add test to func",                nowait = true, remap = false },
+      { "<localleader>gtc", "<cmd>GoCoverage<CR>",         desc = "Test coverage",                   nowait = true, remap = false },
+      { "<localleader>gtf", "<cmd>GoTestFunc<CR>",         desc = "Run test for current func",       nowait = true, remap = false },
+      { "<localleader>gtr", "<cmd>GoTest<CR>",             desc = "Run tests",                       nowait = true, remap = false },
+      { "<localleader>gts", "<cmd>GoAltS!<CR>",            desc = "Open alt file in split",          nowait = true, remap = false },
+      { "<localleader>gtv", "<cmd>GoAltV!<CR>",            desc = "Open alt file in vertical split", nowait = true, remap = false },
+      { "<localleader>gv",  "<cmd>GoVet<CR>",              desc = "Go vet",                          nowait = true, remap = false },
+      { "<localleader>gx",  group = "Code Lens",           nowait = true,                            remap = false },
+      { "<localleader>gxa", "<cmd>GoCodeAction<CR>",       desc = "Code Action",                     nowait = true, remap = false },
+      { "<localleader>gxl", "<cmd>GoCodeLenAct<CR>",       desc = "Toggle Lens",                     nowait = true, remap = false },
+      { "<localleader>m",   group = "Markdown",            nowait = true,                            remap = false },
+      { "<localleader>ma",  "<Plug>MarkdownPreview",       desc = "St[a]rt markdown Preview",        nowait = true, remap = false },
+      { "<localleader>mm",  "<Plug>MarkdownPreviewToggle", desc = "Toggle [M]arkdown Preview",       nowait = true, remap = false },
+      { "<localleader>ms",  "<Plug>MarkdownPreviewStop",   desc = "[S]top Markdown Preview",         nowait = true, remap = false },
     }
 
 
     which_key.setup(setup)
-    which_key.register(global_mappings, global_opts)
-    which_key.register(local_mappings, local_opts)
+    which_key.add(global_mappings)
+    which_key.add(local_mappings)
   end
 }
