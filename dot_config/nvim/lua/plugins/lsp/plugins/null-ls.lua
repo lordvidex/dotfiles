@@ -1,3 +1,6 @@
+-- runtime toggle flag
+_G.FIELDALIGN_ON = true
+
 return {
   -- 1) none-ls (null-ls fork)
   {
@@ -34,3 +37,4 @@ return {
     },
   },
 }
+
