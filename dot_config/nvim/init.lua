@@ -15,5 +15,6 @@ vim.opt.rtp:prepend(lazypath)
 require 'lordvidex.options'
 require 'lordvidex.keymaps'
 require 'lordvidex.utils'
+require("plugins.lsp.gopls_guard")
 
 require('lazy').setup('plugins')
