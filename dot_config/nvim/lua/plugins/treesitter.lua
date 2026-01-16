@@ -13,9 +13,9 @@ return {
       incremental_selection = {
         enable = enable,
         keymaps = {
-          init_selection = "grn",   -- maps in normal mode to init the node/scope selection
-          node_incremental = "<CR>", -- increment to the upper named parent
-          scope_incremental = "<Tab>", -- increment to the upper scope (as defined in locals.scm)
+          init_selection = "grn",       -- maps in normal mode to init the node/scope selection
+          node_incremental = "<CR>",    -- increment to the upper named parent
+          scope_incremental = "<Tab>",  -- increment to the upper scope (as defined in locals.scm)
           node_decremental = "<S-Tab>", -- decrement to the previous node
         },
       },
@@ -103,14 +103,9 @@ return {
         enable = enable, -- false will disable the whole extension
       },
       indent = { enable = enable_experimental, disable = { "python", "css" } },
-      context_commentstring = {
-        enable = enable,
-        disable = { 'dart' },
-        enable_autocmd = false,
-      },
       playground = {
         enable = enable_experimental,
-        updatetime = 25,     -- Debounced time for highlighting nodes in the playground from source code
+        updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
         persist_queries = false, -- Whether the query persists across vim sessions
         keybindings = {
           toggle_query_editor = 'o',

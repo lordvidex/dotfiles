@@ -1,32 +1,36 @@
 return {
-  'jay-babu/mason-null-ls.nvim',
-  dependencies = {
-    'jose-elias-alvarez/null-ls.nvim',
+  -- 1) none-ls (null-ls fork)
+  {
+    "nvimtools/none-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local null_ls      = require("null-ls")
+      local formatting   = null_ls.builtins.formatting
+
+      null_ls.setup({
+        sources = {
+          -- formatters
+          formatting.prettierd,
+        },
+      })
+    end,
   },
-  config = function()
-    local ok, null_ls = pcall(require, "null-ls")
-    if not ok then
-      return
-    end
-
-    local formatting = null_ls.builtins.formatting
-    -- local diagnostics = null_ls.builtins.diagnostics
-
-
-    local sources = {
-      -- null_ls.builtins.formatting.stylua,
-      formatting.prettierd,
-      -- diagnostics.eslint_d, -- no need for this since we have eslint_lsp
-    }
-    null_ls.setup({ sources = sources })
-
-
-    -- install mason sources for linters I do  not have,
-    -- I still have to manually add them to sources anyways
-    require('mason-null-ls').setup({
-      ensure_installed = nil,
+  -- 2) mason-null-ls — install tools ONLY (no auto registering)
+  {
+    "jay-babu/mason-null-ls.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "mason-org/mason.nvim",
+      "nvimtools/none-ls.nvim",
+    },
+    opts = {
+      ensure_installed = { "prettierd" },
       automatic_installation = true,
-      automatic_setup = true,
-    })
-  end,
+      -- IMPORTANT: don't auto-setup sources; we registered them ourselves above
+      handlers = {},
+      -- If you're on an older mason-null-ls that still uses this flag, keep it false:
+      -- automatic_setup = false,
+    },
+  },
 }

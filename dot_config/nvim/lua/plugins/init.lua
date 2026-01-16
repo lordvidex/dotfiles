@@ -33,7 +33,7 @@ return {
 
   -- Display
   -- Themes
-  { 'folke/tokyonight.nvim',                       lazy = true },
+  { 'folke/tokyonight.nvim',                    lazy = true },
   -- Helpers
   'moll/vim-bbye',
 
@@ -54,18 +54,24 @@ return {
   }, -- enable LSP
   {
     'ray-x/lsp_signature.nvim',
-    config = function()
-      require('lsp_signature').setup()
-    end,
-  },
-  {
-    "williamboman/mason.nvim",
-    build = ":MasonUpdate" -- :MasonUpdate updates registry contents
+    event = "InsertEnter",
+    opts = {
+      bind = true,
+      handler_opts = {
+        border = "rounded"
+      }
+    },
   },
   'jay-babu/mason-nvim-dap.nvim',
-  { 'JoosepAlviste/nvim-ts-context-commentstring', lazy = true },
-  'jose-elias-alvarez/null-ls.nvim',
-  --
+  {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    lazy = true,
+    config = function()
+      require('ts_context_commentstring').setup {
+        enable_autocmd = false,
+      }
+    end
+  },
   -- Telescope
 
   {
@@ -103,7 +109,11 @@ return {
   'terrastruct/d2-vim',
 
   -- Rust
-  -- 'simrat39/rust-tools.nvim', -- not needed LSP is enough
+  -- {
+  --   'mrcjkb/rustaceanvim',
+  --   version = '^5',
+  --   lazy = false,
+  -- },
   -- assembly
   'p00f/godbolt.nvim',
 }

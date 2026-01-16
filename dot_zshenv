@@ -7,18 +7,18 @@
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
+paths=(
+  "$HOME/bin"
+  "$HOME/.local/bin"
+  "$HOME/.o3-cli/bin"
+  "/opt/homebrew/bin"
+)
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+for p in "${paths[@]}"; do
+    if [ -d "$p" ]; then
+        export PATH="$p:$PATH"
+    fi
+done
 
 # Go
-PATH=$PATH:/usr/local/go/bin
-PATH=$PATH:/usr/local/nvim/bin
 GOPATH=$HOME/go

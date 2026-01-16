@@ -10,13 +10,6 @@ return {
       'hrsh7th/cmp-cmdline',
       'saadparwaiz1/cmp_luasnip',
       'Snikimonkd/cmp-go-pkgs',
-      {
-        'github/copilot.vim',
-        event = 'InsertEnter',
-        config = function()
-          require('plugins.cmp.copilot')
-        end
-      },
     },
     config = function()
       require('plugins.cmp.tabnine') -- require tabnine
@@ -85,13 +78,6 @@ return {
           ["<C-j>"] = cmp.mapping.select_next_item(),
           ["<C-S-f>"] = cmp.mapping(cmp.mapping.scroll_docs(-4)),
           ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4)),
-          -- ["<C-l>"] = function()
-          --   -- TODO: check for copilot completions
-          --   local copilot_keys = vim.fn['copilot#Accept']()
-          --   if copilot_keys ~= '' and type(copilot_keys) == 'string' then
-          --     vim.api.nvim_feedkeys(copilot_keys, 'i', true)
-          --   end
-          -- end,
           ["<C-Space>"] = cmp.mapping(cmp.mapping.complete()),
           ["<C-y>"] = cmp.config.disable, -- specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping
           ["<C-e>"] = cmp.mapping {
@@ -190,5 +176,4 @@ return {
       vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
     end,
   },
-  -- { 'tzachar/cmp-tabnine', build = './install.sh', dependencies = 'hrsh7th/nvim-cmp' }, -- #uses too much memory
 }

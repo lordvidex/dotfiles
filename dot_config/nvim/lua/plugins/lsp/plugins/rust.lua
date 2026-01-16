@@ -1,13 +1,6 @@
--- local rt = require('rust-tools')
---
--- rt.setup {
---   server = {
---     on_attach = function(_, bufnr)
---       -- Hover actions
---       vim.keymap.set("n", "<localleader>rK", rt.hover_actions.hover_actions, { buffer = bufnr })
---       -- Code action groups
---       vim.keymap.set("n", "<localleader>rla", rt.code_action_group.code_action_group, { buffer = bufnr })
---     end
---   }
--- }
-return {}
+return {
+  'mrcjkb/rustaceanvim',
+  version = '^6', -- Recommended
+  lazy = false, -- This plugin is already lazy
+}
+

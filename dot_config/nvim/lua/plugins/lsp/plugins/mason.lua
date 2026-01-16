@@ -15,7 +15,7 @@ return {
     end
   },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     config = function()
       local settings = {
         ui = {
@@ -34,53 +34,13 @@ return {
     end
   },
   {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "neovim/nvim-lspconfig",
-      'folke/neodev.nvim',
+    "mason-org/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = { "lua_ls" },
     },
-    config = function()
-      local servers = {
-        jsonls = true,
-        lua_ls = true,
-        gopls = true,
-        tsserver = true,
-        yamlls = true,
-      }
-
-      local mason_lspconfig = require 'mason-lspconfig'
-      mason_lspconfig.setup({
-        ensure_installed = servers,
-        automatic_installation = true,
-      })
-
-      local lspconfig = require "lspconfig"
-      mason_lspconfig.setup_handlers {
-        -- The first entry (without a key) will be the default handler
-        -- and will be called for each installed server that doesn't have
-        -- a dedicated handler.
-        function(server_name) -- default handler (optional)
-          local opts = {
-            on_attach = require("plugins.lsp.handlers").on_attach,
-            capabilities = require("plugins.lsp.handlers").capabilities,
-          }
-          local blink_ok, blink = pcall(require, 'blink.cmp')
-          if blink_ok then
-            opts.capabilities = require('blink.cmp').get_lsp_capabilities(opts.capabilities)
-          end
-          local require_ok, conf_opts = pcall(require, "plugins.lsp.settings." .. server_name)
-          if require_ok then
-            opts = vim.tbl_deep_extend("force", conf_opts, opts)
-          end
-          lspconfig[server_name].setup(opts)
-        end,
-        -- Next, you can provide a dedicated handler for specific servers.
-        -- For example, a handler override for the `rust_analyzer`:
-        -- ["rust_analyzer"] = function()
-        --   require("rust-tools").setup {}
-        -- end
-      }
-    end,
+    dependencies = {
+      "mason-org/mason.nvim",
+      "neovim/nvim-lspconfig",
+    },
   },
 }

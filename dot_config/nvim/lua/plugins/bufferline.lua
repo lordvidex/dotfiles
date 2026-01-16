@@ -9,10 +9,17 @@ return {
     if not ok then
       return
     end
+    local opts = {
+      mode = "n",     -- NORMAL mode
+      prefix = "<leader>",
+      silent = true,  -- use `silent` when creating keymaps
+      noremap = true, -- use `noremap` when creating keymaps
+      nowait = false, -- use `nowait` when creating keymaps
+    }
     local mappings = {
       { "<leader>bl", "<cmd>BufferLineSortByExtension<CR>", desc = "sort by language", nowait = false, remap = false },
     }
-    wk.add(mappings)
+    wk.register(mappings, opts)
 
     -- initialize bufferline
     bufferline.setup {
